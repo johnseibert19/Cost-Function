@@ -9,12 +9,14 @@ from math import sqrt, ceil, log
 
 costs = [1, 1, ]
 operands = [1, 1, ]
+u_bounds = [1, 1, ]
 number = int(input("Enter any number: "))
 
 for j in range(number + 1):
     if j > 1:
         costs.append(j)
         operands.append(j)
+        u_bounds.append(int(log(j, 2)) + 7)
 
 def multiply(x):
     """
