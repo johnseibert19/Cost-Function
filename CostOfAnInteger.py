@@ -21,7 +21,6 @@ def multiply(x):
 
     return min_cost, culprit
 
-
 def fibonacci(x):
     fib = [1, 1]
     for i in range(2, number + 1):
@@ -32,7 +31,6 @@ def fibonacci(x):
         return costs[fib.index(x)] + 4, f"F({fib.index(x)})"
     else:
         return x, x
-
 
 def successor(x):
     return costs[x - 1] + 1, f"S({x - 1})"
@@ -48,6 +46,15 @@ def add(x):
 
     return min_cost, culprit
 
+def pred(x):
+    min_cost = x
+    culprit = x
+    for i in range(x, 1, -1):
+        if costs[i] + 1 < costs[i-1]:
+            costs[i-1] = costs[i] + 1
+            culprits[i-1] = f"P({i})"
+    return min_cost, culprit
+    
 
 def exponent(x):
     powers = []
@@ -78,7 +85,7 @@ def main():
         culprits.append(j)
         u_bounds.append(len(bin(j)[2:]) + 7)
 
-    function_list = [fibonacci, successor, add, exponent, multiply, binary]
+    function_list = [multiply, fibonacci, successor, add, exponent, binary, pred]
     for j in range(1, number + 1):
         min_cost = costs[j]
         culprit = culprits[j]
@@ -90,9 +97,15 @@ def main():
 
         costs[j] = min_cost
         culprits[j] = culprit
+     
+    max_width_number = max(len(str(number)), len('Number'))
+    max_width_cost = max(max(len(str(cost)) for cost in costs), len('Cost'))
+    max_width_culprit = max(max(len(str(culprit)) for culprit in culprits), len('Culprit'))
 
-        print(j, costs[j], culprits[j])
+    print(f"{'Number'.ljust(max_width_number)} {'Cost'.ljust(max_width_cost)} {'Culprit'.ljust(max_width_culprit)}")
 
+    for i in range(1, number + 1):
+        print(f"{str(i).ljust(max_width_number)} {str(costs[i]).ljust(max_width_cost)} {str(culprits[i]).ljust(max_width_culprit)}")
 
 if __name__ == "__main__":
     main()
