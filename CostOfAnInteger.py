@@ -2,7 +2,6 @@ from math import sqrt, ceil, log
 
 costs = [1, 1]
 culprits = [1, 1]
-u_bounds = [1, 1]
 
 number = int(input("Enter any number: "))
 
@@ -35,7 +34,6 @@ def fibonacci(x):
 def successor(x):
     return costs[x - 1] + 1, f"S({x - 1})"
 
-
 def add(x):
     min_cost = x
     culprit = x
@@ -49,10 +47,20 @@ def add(x):
 def pred(x):
     min_cost = x
     culprit = x
-    for i in range(x, 1, -1):
+    for i in range(x, 0, -1):
         if costs[i] + 1 < costs[i-1]:
             costs[i-1] = costs[i] + 1
             culprits[i-1] = f"P({i})"
+    return min_cost, culprit
+
+def subtract(x):
+    min_cost = x
+    culprit = x
+    for i in range (x, 0, -1):
+        for j in range (i, 0, -1):
+            if costs[i] + costs[j] + 2 < costs[i-j]:
+                costs[i-j] = costs[i] + costs[j] + 2
+                culprits[i-j] = f"{i}-{j}"
     return min_cost, culprit
     
 
@@ -83,9 +91,8 @@ def main():
     for j in range(2, number + 1):
         costs.append(j)
         culprits.append(j)
-        u_bounds.append(len(bin(j)[2:]) + 7)
 
-    function_list = [multiply, fibonacci, successor, add, exponent, binary, pred]
+    function_list = [multiply, add, pred, subtract]
     for j in range(1, number + 1):
         min_cost = costs[j]
         culprit = culprits[j]
