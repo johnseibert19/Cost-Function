@@ -1,4 +1,6 @@
-Number Cost Culprit   
+Each culprit comes down to cost using all 7 potential operations.
+
+Number Cost Culprit 
 1      1    1
 2      2    2
 3      3    3
