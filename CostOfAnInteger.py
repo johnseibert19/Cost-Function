@@ -92,7 +92,7 @@ def main():
         costs.append(j)
         calculations.append(j)
 
-    function_list = [multiply, add, pred]
+    function_list = [multiply, fibonacci, add, pred, exponent, successor, binary]
     for j in range(1, number + 1):
         min_cost = costs[j]
         calculation = calculations[j]
