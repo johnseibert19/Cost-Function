@@ -4,4 +4,4 @@ This is an expansion of research done by [Max Norfolk](https://mnorfolk03.github
 
 The cost a postive integer *m* for *m > 1* is defined as the minimum of C<sub>S</sub>(a)+C<sub>S</sub>(b) such that *a* and *b* are positive integers and *m = a * b* for a primitive recursive function * &in; S. Regardless of *S*, C<sub>S</sub>(0) = 1 and C<sub>S</sub>(1) = 1. This function is similar to Kolmogorov complexity, however it is computable. 
 
-UPDATE (5/2/2024): I have figured out what the "subtract" business going on in Max's code is doing. The newly added function, pred(x), achieves a similar effect as the approach taken in his code involves going through the indices in descending order while establishing changes for subsequent indices. Mine doesn't use an iterator, while his does. The result, when taking out the operational costs in the definition, is the same.
+UPDATE (5/15/2024): The function C({+, *, -}) in Norfolk's code holds experimentally to a version I wrote to check to see if pred(x) is logically equivalent. Experimentally, it holds for the first 2000 integers, likely indicating it holds for all Z.
